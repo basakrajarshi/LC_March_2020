@@ -4,17 +4,27 @@ class Solution(object):
         :type x: int
         :rtype: int
         """
-        if x <= (-2)**31 or x >= 2**31 - 1:
+        if x == 0:
+            return x
+        
+        result = 0
+
+        num_to_str = str(x)
+        num_to_str = num_to_str.rstrip('0')
+        isneg = False
+        if num_to_str[0] == '-':
+            isneg = True
+            num_to_str = num_to_str.lstrip('-')
+  
+        rev_str = num_to_str[::-1]
+        str_to_num = int(rev_str)
+        
+        if isneg == False:
+            result = str_to_num
+        else:
+            result = str_to_num - 2*(str_to_num)
+        
+        if result < (-2)**31 or result > (2)**31 - 1:
             return 0
         else:
-            numinstr = str(x)
-            if x >= 0:
-                revstr = numinstr[::-1]
-            else:
-                temp = numinstr[1:]
-                temp1 = temp[::-1]
-                revstr = '-' + temp1
-            if int(revstr) <= (-2)**31 or int(revstr) >= 2**31 - 1:
-                return 0
-            else:
-                return int(revstr)
+            return result
