@@ -4,34 +4,25 @@ class Solution(object):
         :type strs: List[str]
         :rtype: str
         """
-        result = ''
-        if len(strs) == 0:
-            return result
+        if strs is None or len(strs) == 0:
+            return ""
+        
         if len(strs) == 1:
             return strs[0]
         
-        all_lengths = []
-        for word in strs:
-            all_lengths.append(len(word))
+        all_lengths = [len(s) for s in strs]
         min_length = min(all_lengths)
+        
         if min_length == 0:
-            return result
-        
-        num_words = len(strs)
-        common_letters = []
-        
-        count = 0
-        while count < min_length:
-            
-            for word in strs:
-                temp = word[count]
-                common_letters.append(temp)
-            count += 1
-            
-            if (all(x == common_letters[0] for x in common_letters) == True): 
-                result = result + common_letters[0]
-                common_letters = []
+            return ""
+
+        result = ""
+
+        for i in range(min_length):
+            all_letters = [s[i] for s in strs]
+
+            if len(set(all_letters)) == 1:
+                result = result + all_letters[0]
             else:
                 return result
-            
         return result
