@@ -15,19 +15,17 @@ class Solution(object):
         result_tail = result
         
         ll_to_list = []
-        
-        # Convert both linked lists to arrays
+        # Add items from first linkedlist to array
         while l1 != None:
-            v1 = l1.val
-            ll_to_list.append(v1)
+            ll_to_list.append(l1.val)
             l1 = l1.next
+        # Add items from second linkedlist to array
         while l2 != None:
-            v2 = l2.val
-            ll_to_list.append(v2)
+            ll_to_list.append(l2.val)
             l2 = l2.next
-        # Sort array in increasing order
+        # Sort the array
         ll_to_list.sort()
-        # Convert array to linked list
+        # Convert the array to a linkedlist
         for i in ll_to_list:
             result_tail.next = ListNode(i)
             result_tail = result_tail.next
