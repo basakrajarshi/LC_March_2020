@@ -12,21 +12,18 @@ class Solution(object):
         :rtype: ListNode
         """
         result = ListNode(0)
-        result_tail = result
+        result_tail  = result
         
-        # Convert to list
-        ll_to_list = []
+        # Convert linked list to array
+        arr = []
         while head != None:
-            v1 = head.val
-            ll_to_list.append(v1)
+            arr.append(head.val)
             head = head.next
-        
-        # Remove nth item from end of list 
-        del ll_to_list[-n]
-       
-       # Convert back to linked list
-        for i in ll_to_list:
+        # Remove nth item from end of array
+        del arr[-n]
+        # Convert array back to linked list
+        for i in arr:
             result_tail.next = ListNode(i)
             result_tail = result_tail.next
-        
+            
         return result.next
