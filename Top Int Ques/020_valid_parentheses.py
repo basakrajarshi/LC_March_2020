@@ -4,31 +4,30 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        if len(s) % 2 == 1:
+        if s is None or len(s) == 0:
+            return True
+        
+        if len(s) % 2 != 0:
             return False
         
-        def get_compliment(c):
-            if c == ')':
-                return '('
-            if c == '}':
-                return '{'
-            if c == ']':
-                return '['
+        d = {')':'(',
+             '}':'{',
+             ']':'['}
         
         stack = []
         
         for char in s:
-            if char == '(' or char == '{' or char == '[':
+            if char in ['(', '{', '[']:
                 stack.append(char)
             else:
                 if len(stack) == 0:
                     return False
-                check = get_compliment(char)
-                item = stack.pop()
-                if item != check:
+                if stack.pop() == d[char]:
+                    continue
+                else:
                     return False
         
-        if len(stack) == 0:
-            return True
-        else:
+        if len(stack) != 0:
             return False
+        
+        return True
