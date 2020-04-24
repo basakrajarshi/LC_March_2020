@@ -10,21 +10,20 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        result_array = []
         result = ListNode(0)
         result_tail = result
-        # Go through each linked list
-        # Add elements to an array
+        
+        ll_to_list = []
+        # Add all elements from linked list to an array
         for l in lists:
-            while l != None:
-                val = l.val
-                result_array.append(val)
+            while l!= None:
+                ll_to_list.append(l.val)
                 l = l.next
         # Sort array
-        result_array.sort()
-        # Convert array to linked list
-        for i in result_array:
-            result_tail.next = ListNode(i)
+        ll_to_list.sort()
+        # Add all elements from array to a linked list
+        for item in ll_to_list:
+            result_tail.next = ListNode(item)
             result_tail = result_tail.next
             
         return result.next
